@@ -5,8 +5,9 @@
   ],
   "rules": {
     "member-access": false,
-    "max-classes-per-file": [false],
-    "no-console": [false],
-    "interface-name": [false]
+    "max-classes-per-file": false,
+    "no-console": true,
+    "interface-name": [false],
+    "no-unused-variable": true
   }
 }

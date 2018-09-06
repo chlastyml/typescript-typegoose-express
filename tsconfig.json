@@ -4,8 +4,8 @@
     "target": "es6",
     "strict": true,
     "noImplicitReturns": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
     "pretty": true,
     "allowJs": true,
     "checkJs": true,
@@ -14,9 +14,9 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "outDir": "./build",
-    "removeComments": true
+    "removeComments": true,
   },
-  "compileOnSave": false,
+  "compileOnSave": true,
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }

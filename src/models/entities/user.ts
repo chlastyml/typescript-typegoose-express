@@ -5,7 +5,7 @@ interface IUser {
     name: string
 }
 
-export class User extends Typegoose implements IUser {
+class User extends Typegoose implements IUser {
     @prop({ required: true })
     name: string = "no name"
 }

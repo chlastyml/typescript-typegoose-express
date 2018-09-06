@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import moment = require('moment')
 
 const FgRed = "\x1b[31m"
@@ -29,7 +29,7 @@ const Reset = "\x1b[0m"
 // const BgWhite = "\x1b[47m"
 
 export let requestCounter = 0
-export function clearCount(){ requestCounter = 0 }
+export function clearCount() { requestCounter = 0 }
 
 export function logStart(_req: Request, _res: Response) {
     requestCounter++
@@ -50,8 +50,8 @@ const hrTimeToString = (hrStart: [number, number]) => {
 }
 const between = (value: number, bottom: number, top: number) => { return bottom <= value && value < top }
 const colorStatusCode = (status: number): string => {
-    if(between(status, 200, 300)) return `${FgGreen}${status}${Reset}`
-    if(between(status, 300, 400)) return `${FgYellow}${status}${Reset}`
-    if(between(status, 400, 600)) return `${FgRed}${status}${Reset}`
+    if (between(status, 200, 300)) return `${FgGreen}${status}${Reset}`
+    if (between(status, 300, 400)) return `${FgYellow}${status}${Reset}`
+    if (between(status, 400, 600)) return `${FgRed}${status}${Reset}`
     return status.toString();
 }
