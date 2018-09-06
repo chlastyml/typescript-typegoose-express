@@ -1,6 +1,6 @@
 import app from './app'
 
-const server = app.listen(app.get("port"), () => {
+const server = app.listen(app.get("port"), async () => {
     console.log(
         "App is running on http://localhost:%d in %s mode",
         app.get("port"),
@@ -8,4 +8,4 @@ const server = app.listen(app.get("port"), () => {
     )
 });
 
-export default server;
+export default server

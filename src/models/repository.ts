@@ -1,9 +1,9 @@
 import { ModelType } from "typegoose";
 
-export abstract class Repository<T> {
-    public Model: ModelType<T>;
+export abstract class Repository<Input, Output> {
+    public Model: ModelType<Output>;
 
-    protected constructor(model: ModelType<T>) {
+    protected constructor(model: ModelType<Output>) {
         this.Model = model;
     }
 
@@ -15,14 +15,15 @@ export abstract class Repository<T> {
         return this.Model.findById(id).exec();
     }
 
-    public Create(doc: T) {
-        if(doc instanceof this.Model) console.log('true');
+    public Create(doc: Input) {
+        if (doc instanceof this.Model) console.log('true');
         else console.log('false');
         return this.Model.create(doc);
     }
 
     public RemoveByID(id: string) {
-        return this.Model.findById(id).remove().exec();
+        return this.Model.remove({ _id: id }).exec()
+        // return this.Model.findById(id).remove().exec();
     }
 
     // public Update(obj: T) {

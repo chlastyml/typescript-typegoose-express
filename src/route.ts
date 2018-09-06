@@ -1,7 +1,7 @@
 import { Application } from "express";
 
 export function setRoute(app: Application): void {
-    app.get('/', (_req, res) => {
-        res.send("Nazdar")
+    app.get('/', async (_req, res) => {
+        res.status(200).json('OK')
     });
 }
