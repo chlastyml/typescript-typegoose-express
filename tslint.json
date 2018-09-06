@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "member-access": false,
+    "max-classes-per-file": [false],
+    "no-console": [false],
+    "interface-name": [false]
+  }
+}
