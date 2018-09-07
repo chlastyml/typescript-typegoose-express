@@ -25,7 +25,7 @@ app.use(bodyParser.json())
 setRoute(app)
 
 // Error handler
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
     const status = err.status || 500
     let errMsg: any = {
         status,
@@ -40,15 +40,5 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
     }
     res.status(status).json(errMsg)
 })
-
-// const HTTP_SERVER_ERROR = 500;
-// app.use(function (err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
-//     console.log('res.headersSent: ', res.headersSent)
-//     if (res.headersSent) {
-//         return next(err);
-//     }
-
-//     return res.status(err.status || HTTP_SERVER_ERROR).render('500');
-// });
 
 export default app

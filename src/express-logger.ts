@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import moment = require('moment')
 
 const FgRed = "\x1b[31m"
@@ -28,17 +28,13 @@ const Reset = "\x1b[0m"
 // const BgCyan = "\x1b[46m"
 // const BgWhite = "\x1b[47m"
 
-export let requestCounter = 0
-export function clearCount() { requestCounter = 0 }
-
 export function logStart(_req: Request, _res: Response) {
-    requestCounter++
     // console.log(`${reverse('▼▼▼▼▼')} ${req.method} ${moment().format('HH:mm:ss')} ${req.url}`)
     return process.hrtime()
 }
 export function logEnd(req: Request, res: Response, hrStart: [number, number]) {
     const measure = hrTimeToString(hrStart).padStart(6);
-    console.log(`${reverse('▲▲▲▲▲')} ${moment().format('HH:mm:ss')} ${colorStatusCode(res.statusCode)} ${req.method} ${measure} ${req.url}`)
+    console.log(`${reverse(' ▲▲▲▲▲ ')} ${moment().format('HH:mm:ss')} ${colorStatusCode(res.statusCode)} ${req.method} ${measure} ${req.url}`)
 }
 
 const reverse = (text: string) => { return `\x1b[47m\x1b[30m${text}\x1b[0m` }
