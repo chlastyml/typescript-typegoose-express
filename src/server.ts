@@ -1,22 +1,11 @@
 import app from './app'
+import { DB } from "./models/init"
+import { config } from "./config/app";
 
-const server = app.listen(app.get("port"), () => {
-    console.log(
-        "App is running on http://localhost:%d in %s mode",
-        app.get("port"),
-        app.get("env")
-    )
+DB.connect(config.db)
 
-    call(app.get('port'), 100)
+const server = app.listen(config.port, () => {
+    console.log(`App is running on http://localhost:${config.port} in ${app.get("env")} mode`);
 });
-
-import http = require('http')
-function call(PORT: any, time: number) {
-    setTimeout(() => {
-        http.get(`http://localhost:${PORT}`, res => {
-            // resolve(_res)
-        })
-    }, time)
-}
 
 export default server
