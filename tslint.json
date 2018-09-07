@@ -1,13 +1,19 @@
 {
   "extends": [
-    "tslint:latest",
-    "tslint-config-prettier"
+    "tslint:latest"
   ],
   "rules": {
     "member-access": false,
     "max-classes-per-file": false,
-    "no-console": true,
-    "interface-name": [false],
-    "no-unused-variable": true
+    "no-console": false,
+    "interface-name": [
+      false
+    ],
+    "no-unused-variable": false,
+    "semicolon": [
+      true,
+      "always"
+    ],
+    "quotemark": false
   }
 }

@@ -8,18 +8,18 @@ export abstract class Repository<Input, Output> {
     }
 
     public GetAll() {
-        return this.Model.find().exec()
+        return this.Model.find().exec();
     }
 
     public GetByID(id: string) {
-        return this.Model.findById(id).exec()
+        return this.Model.findById(id).exec();
     }
 
     public Create(doc: Input) {
-        return this.Model.create(doc)
+        return this.Model.create(doc);
     }
 
     public RemoveByID(id: string) {
-        return this.Model.remove({ _id: id }).exec()
+        return this.Model.remove({ _id: id }).exec();
     }
 }

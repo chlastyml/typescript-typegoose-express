@@ -28,26 +28,29 @@ const Reset = "\x1b[0m";
 // const BgCyan = "\x1b[46m"
 // const BgWhite = "\x1b[47m"
 
-export function logStart(_req: Request, _res: Response) {
+export function logStart(req: Request, res: Response) {
     // console.log(`${reverse(' ▼▼▼▼▼ ')} ${req.method} ${moment().format('HH:mm:ss')} ${req.url}`);
     return process.hrtime();
 }
 export function logEnd(req: Request, res: Response, hrStart: [number, number]) {
     const measure = hrTimeToString(hrStart).padStart(6);
-    console.log(`${reverse(' ▲▲▲▲▲ ')} ${moment().format('HH:mm:ss')} ${colorStatusCode(res.statusCode)} ${req.method} ${measure} ${req.url}`);
+    const triangles = reverse(" ▲▲▲▲▲ ");
+    const time = moment().format("HH:mm:ss");
+    const status = colorStatusCode(res.statusCode);
+    console.log(`${triangles} ${time} ${status} ${req.method} ${measure} ${req.url}`);
 }
 
-const reverse = (text: string) => { return `\x1b[47m\x1b[30m${text}\x1b[0m` }
+const reverse = (text: string) => `\x1b[47m\x1b[30m${text}\x1b[0m`;
 const hrTimeToString = (hrStart: [number, number]) => {
     const hr = process.hrtime(hrStart);
     const s = hr[0] * 1000;
     const ms = Math.round(hr[1] / 1000000);
     return `${s + ms}ms`;
-}
-const between = (value: number, bottom: number, top: number) => { return bottom <= value && value < top }
+};
+const between = (value: number, bottom: number, top: number) => bottom <= value && value < top;
 const colorStatusCode = (status: number): string => {
-    if (between(status, 200, 300)) return `${FgGreen}${status}${Reset}`;
-    if (between(status, 300, 400)) return `${FgYellow}${status}${Reset}`;
-    if (between(status, 400, 600)) return `${FgRed}${status}${Reset}`;
+    if (between(status, 200, 300)) { return `${FgGreen}${status}${Reset}`; }
+    if (between(status, 300, 400)) { return `${FgYellow}${status}${Reset}`; }
+    if (between(status, 400, 600)) { return `${FgRed}${status}${Reset}`; }
     return status.toString();
-}
+};
